@@ -11,8 +11,11 @@ jobs:
           java-version: 1.8
       - name: Build everything
         run: ant
-      - uses: ncipollo/release-action@v1
+      - name: Tagname
+        run: echo "DATE=$(date +%y%m%d)" >> $GITHUB_ENV
+      - name: Release
+        uses: ncipollo/release-action@v1
         with:
-            artifacts: "dist/*"
-            tag: ${{ GITHUB_SHA::6 }}
-            token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "dist/*"
+          tag: day${{ env.DATE }}
+          token: ${{ secrets.GITHUB_TOKEN }}
