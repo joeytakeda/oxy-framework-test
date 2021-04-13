@@ -1,2 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<project default="all" basedir="." name="test">
+    
+    <target name="init">
+        <delete dir="dist"/>
+        <mkdir dir="dist/test-framework"/>
+    </target>
+    
+    
+    <target name="dist">
+        
+
+        <copy todir="dist/test-framework">
+            <fileset dir="${basedir}">
+                <include name="css/**"/>
+                <include name="schema/**"/>
+                <include name="oxy_framework_test.framework"/>
+            </fileset>
+        </copy>
+        <zip basedir="${basedir}" destfile="dist/test-framework.zip">
+            <fileset dir="${basedir}/dist/test-framework">
+                <include name="**"/>
+            </fileset>
+        </zip>
+        <copy file="${basedir}/updateSite.xml" tofile="${basedir}/dist/updateSite.xml"/>       
+    </target>
+    
+    
+    
+    <target name="clean">
+        <delete dir="dist/test-framework"/>
+    </target>
+    
+    <target name="all" depends="init, dist, clean"/>
+    
+</project>
