@@ -19,3 +19,4 @@ jobs:
           artifacts: "dist/*"
           tag: day${{ env.DATE }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
