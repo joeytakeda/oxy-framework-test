@@ -25,6 +25,8 @@
                 <include name="css/**"/>
                 <include name="schema/**"/>
                 <include name="${frameWorkName}.framework"/>
+                <exclude name="*.xml"/>
+                <exclude name="*.xpr"/>
             </fileset>
         </copy>
         <zip basedir="${basedir}" destfile="dist/oxy-framework-test.zip">
