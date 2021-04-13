@@ -24,17 +24,11 @@
             <fileset dir="${basedir}">
                 <include name="css/**"/>
                 <include name="schema/**"/>
-                <include name="${frameWorkName}.framework"/>
-                <exclude name="*.xml"/>
-                <exclude name="*.xpr"/>
+                <include name="${frameworkName}.framework"/>
             </fileset>
         </copy>
-        <zip basedir="${basedir}" destfile="dist/oxy-framework-test.zip">
-            <fileset dir="${basedir}/dist/${frameworkName}">
-                <include name="**"/>
-            </fileset>
-        </zip>
-        <copy file="${basedir}/updateSite.xml" tofile="${basedir}/dist/updateSite.xml"/>       
+        <zip basedir="${basedir}/dist/${frameworkName}" destfile="dist/${frameworkName}.zip"/>
+        <copy file="${basedir}/updateSite.xml" tofile="${basedir}/dist/updateSite.xml"/>   
     </target>
     
     
