@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project default="all" basedir="." name="test">
+    
+    <path id="frameworkFiles">
+        <first>
+            <fileset dir="${basedir}">
+                <include name="*.framework"/>
+            </fileset>
+        </first>
+    </path>
+    
+    <pathconvert property="frameworkFile" refid="frameworkFiles"/>
+    
+    <basename property="frameworkName" file="${frameworkFile}" suffix=".framework"/>
     
     <target name="init">
         <delete dir="dist"/>
-        <mkdir dir="dist/test-framework"/>
+        <mkdir dir="dist/${frameworkName}"/>
     </target>
     
     
     <target name="dist">
-        
-
-        <copy todir="dist/test-framework">
+        <copy todir="dist/${frameworkName}">
             <fileset dir="${basedir}">
                 <include name="css/**"/>
                 <include name="schema/**"/>
-                <include name="oxy_framework_test.framework"/>
+                <include name="${frameWorkName}.framework"/>
             </fileset>
         </copy>
-        <zip basedir="${basedir}" destfile="dist/test-framework.zip">
-            <fileset dir="${basedir}/dist/test-framework">
+        <zip basedir="${basedir}" destfile="dist/oxy-framework-test.zip">
+            <fileset dir="${basedir}/dist/${frameworkName}">
                 <include name="**"/>
             </fileset>
         </zip>
@@ -29,9 +38,10 @@
     
     
     <target name="clean">
-        <delete dir="dist/test-framework"/>
+        <delete dir="dist/${frameworkName}"/>
     </target>
     
     <target name="all" depends="init, dist, clean"/>
+    
     
 </project>
