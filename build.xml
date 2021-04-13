@@ -27,7 +27,9 @@
                 <include name="${frameworkName}.framework"/>
             </fileset>
         </copy>
-        <zip basedir="${basedir}/dist/${frameworkName}" destfile="dist/${frameworkName}.zip"/>
+        <zip basedir="${basedir}/dist" destfile="dist/${frameworkName}.zip">
+            <include name="${frameworkName}/**"/>
+        </zip>
         <copy file="${basedir}/updateSite.xml" tofile="${basedir}/dist/updateSite.xml"/>   
     </target>
     
